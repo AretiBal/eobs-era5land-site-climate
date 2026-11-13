@@ -64,7 +64,7 @@ Missing values are written as `NA`. In R: `arrow::read_parquet()` or `read.csv()
   nearest cell with data (column `moved`); a warning is printed if this is
   further than 30 km.
 - E-OBS daily precipitation in many countries refers to 06–06 UTC rather
-  than calendar days; keep this in mind when comparing with ERA5-Land.
+  than calendar days.
 
 ## Acknowledgement
 
