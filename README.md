@@ -14,8 +14,8 @@ Sites are processed by region in the order East, North, South, West.
    - `tg_ens_mean_0.1deg_reg_v34.0e.nc` (mean temperature, °C)
 
    Download from the Copernicus Climate Data Store
-   (https://cds.climate.copernicus.eu, dataset "E-OBS daily gridded meteorological
-   data for Europe") and place both files in `data/`.
+   ([https://cds.climate.copernicus.eu, dataset "E-OBS daily gridded meteorological
+   data for Europe](https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php#datafiles)") and place both files in `data/`.
 
 2. **Site list**: `data/high_status_wbs.xlsx` with at least the columns
    `wb_id, lat, lon, country, countryName, region`
