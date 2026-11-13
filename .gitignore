@@ -1,0 +1,13 @@
+# Block everything by default; only the files listed below are shared.
+*
+
+!.gitignore
+!README.md
+!requirements.txt
+
+# Python scripts named like 01_..., 02_...
+![0-9][0-9]_*.py
+
+# Example figures
+!figures/
+!figures/*.png
