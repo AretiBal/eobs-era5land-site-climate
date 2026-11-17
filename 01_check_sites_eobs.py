@@ -26,7 +26,7 @@ EOBS_FILES = {
 FIG_DIR = BASE_DIR / "figures"
 OUT_DIR = BASE_DIR / "output"
 
-START_DATE, END_DATE = "2017-01-01", "2026-06-30"
+START_DATE, END_DATE = "2015-01-01", "2024-12-30"
 REGION_ORDER = ["East", "North", "South", "West"]
 REGION_COLORS = {"East": "tab:red", "North": "tab:blue",
                  "South": "tab:orange", "West": "tab:green"}

@@ -2,7 +2,7 @@
 03_merge_eobs.py -- MERGE the E-OBS chunks, CHECK, SAVE and PLOT
 - Reads the 40 chunks in output/eobs_chunks/.
 - Checks completeness (all sites x all days, no duplicates, NaN report).
-- Saves output/eobs_daily_2017_2026.parquet and .csv.
+- Saves output/eobs_daily_2015_2024.parquet and .csv.
 - Saves plots to figures/.
 """
 from pathlib import Path
@@ -16,14 +16,14 @@ import matplotlib.pyplot as plt
 BASE_DIR = Path(__file__).resolve().parent
 CHUNK_DIR = BASE_DIR / "output" / "eobs_chunks"
 CELLS_CSV = BASE_DIR / "output" / "sites_eobs_cells.csv"
-OUT_PARQUET = BASE_DIR / "output" / "eobs_daily_2017_2026.parquet"
-OUT_CSV = BASE_DIR / "output" / "eobs_daily_2017_2026.csv"
+OUT_PARQUET = BASE_DIR / "output" / "eobs_daily_2015_2024.parquet"
+OUT_CSV = BASE_DIR / "output" / "eobs_daily_2015_2024.csv"
 FIG_DIR = BASE_DIR / "figures"
 
-START_DATE, END_DATE = "2017-01-01", "2026-06-30"
-LAST_FULL_YEAR = 2025          # for annual rainfall totals (2026 is half a year)
+START_DATE, END_DATE = "2015-01-01", "2024-12-30"
+LAST_FULL_YEAR = 2024          # for annual rainfall totals (2026 is half a year)
 REGION_ORDER = ["East", "North", "South", "West"]
-YEARS = range(2017, 2027)
+YEARS = range(2015, 2025)
 REGION_COLORS = {"East": "tab:red", "North": "tab:blue",
                  "South": "tab:orange", "West": "tab:green"}
 
@@ -144,7 +144,7 @@ for ax in axes:
     ax.set_xticks(range(1, 13))
     ax.set_xlabel("month")
     ax.legend()
-fig.suptitle("Seasonal cycle per region, average over all sites, 2017-2026")
+fig.suptitle("Seasonal cycle per region, average over all sites, 2015-2024")
 fig.tight_layout()
 f = FIG_DIR / "03_seasonal_cycle_by_region.png"
 fig.savefig(f, dpi=150)
@@ -157,13 +157,13 @@ site_rr = (df[df["year"] <= LAST_FULL_YEAR].groupby(["wb_id", "year"])["rr"].sum
              .groupby("wb_id").mean().rename("rr_annual"))
 m = cells.set_index("wb_id").join(site_tg).join(site_rr)
 print(f"Site mean tg: {m['tg_mean'].min():.1f} to {m['tg_mean'].max():.1f} °C")
-print(f"Site mean annual rr (2017-{LAST_FULL_YEAR}): "
+print(f"Site mean annual rr (2015-{LAST_FULL_YEAR}): "
       f"{m['rr_annual'].min():.0f} to {m['rr_annual'].max():.0f} mm")
 
 fig, axes = plt.subplots(1, 2, figsize=(16, 8))
 for ax, col, cmap, label in [
-        (axes[0], "tg_mean", "RdYlBu_r", "mean tg 2017-2026 (°C)"),
-        (axes[1], "rr_annual", "YlGnBu", f"mean annual rr 2017-{LAST_FULL_YEAR} (mm)")]:
+        (axes[0], "tg_mean", "RdYlBu_r", "mean tg 2015-2024 (°C)"),
+        (axes[1], "rr_annual", "YlGnBu", f"mean annual rr 2015-{LAST_FULL_YEAR} (mm)")]:
     sc = ax.scatter(m["lon"], m["lat"], c=m[col], cmap=cmap, s=10)
     fig.colorbar(sc, ax=ax, shrink=0.6, label=label)
     ax.set_aspect(1 / np.cos(np.radians(50)))

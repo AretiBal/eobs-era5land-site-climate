@@ -1,7 +1,7 @@
 """
 02_extract_eobs.py -- EXTRACT E-OBS rr and tg for every site
 - Reads output/sites_eobs_cells.csv (made by 01_check_sites_eobs.py).
-- Loops region (East, North, South, West) -> year (2017..2026).
+- Loops region (East, North, South, West) -> year (2015..2024).
 - One chunk per region-year: output/eobs_chunks/eobs_{region}_{year}.parquet
 - Existing chunks are skipped, so the script can be stopped and restarted.
 """
@@ -20,9 +20,9 @@ EOBS_FILES = {
 }
 CHUNK_DIR = BASE_DIR / "output" / "eobs_chunks"
 
-START_DATE, END_DATE = "2017-01-01", "2026-06-30"
+START_DATE, END_DATE = "2015-01-01", "2024-12-30"
 REGION_ORDER = ["East", "North", "South", "West"]
-YEARS = range(2017, 2027)
+YEARS = range(2015, 2025)
 
 # TEST MODE: list of (region, year) to run only these chunks; None = run all
 ONLY_CHUNKS = None

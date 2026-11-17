@@ -1,6 +1,6 @@
 """
 04_plot_random_sites.py -- PLOT daily E-OBS series for random example sites
-- Reads output/eobs_daily_2017_2026.parquet.
+- Reads output/eobs_daily_2015_2024.parquet.
 - Picks N_PER_REGION random sites per region (fixed seed = repeatable).
 - Saves one figure per region: figures/04_random_sites_{region}.png
 """
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 # ----------------------------------------------------------------- settings
 BASE_DIR = Path(__file__).resolve().parent
-DATA = BASE_DIR / "output" / "eobs_daily_2017_2026.parquet"
+DATA = BASE_DIR / "output" / "eobs_daily_2015_2024.parquet"
 FIG_DIR = BASE_DIR / "figures"
 
 REGION_ORDER = ["East", "North", "South", "West"]
